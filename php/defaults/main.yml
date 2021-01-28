@@ -1,8 +1,14 @@
+###
+
+### PHP repository
+php_ppa: "ppa:ondrej/php"
+### specific version
+php_version: "7.1"
 ## php executable should be call from commandline
 php_executable: "php"
 
 # Nginx - PHP-FPM configuration.
-php_enable_php_fpm: false
+php_enable_php_fpm: true
 php_fpm_listen: "127.0.0.1:9000"
 php_fpm_listen_allowed_clients: "127.0.0.1"
 php_fpm_pm_max_children: 50
@@ -23,4 +29,4 @@ php_opcache_max_accelerated_files: "60000"
 php_enable_apc: true
 php_apc_shm_size: "512"
 php_apc_enable_cli: "0"
-php_apc_max_file_size: '128MB'
+php_apc_max_file_size: "128MB"

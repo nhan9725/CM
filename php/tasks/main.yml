@@ -1,0 +1,26 @@
+---
+- name: install software properties common
+  become: true    
+  apt: 
+    name: software-properties-common
+    state: present
+
+- name: Add repository for Ubuntu
+  become: true
+  apt_repository: repo={{ php_ppa }}
+
+- name: Update apt
+  become: yes
+  apt: update_cache=yes
+
+- name: Install PHP Packages
+  become: yes
+  apt: 
+    name: "{{ __php_packages }}"
+    state: present
+  with_items: "{{ __php_packages }}"
+  when: __php_packages is defined
+  notify:
+    - restart php{{ php_version }}-fpm
+
+#- include: configure.yml

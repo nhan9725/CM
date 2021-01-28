@@ -34,11 +34,10 @@ __php_packages:
   - "php{{ php_version }}-json"
   - "php{{ php_version }}-mbstring"
   - "php{{ php_version }}-opcache"
-  - "php{{ php_version }}-sqlite3"
   - "php{{ php_version }}-xml"
   - "php{{ php_version }}-yaml"
 
-php_versions_debian:
+__php_versions_debian:
   - php7.1-common
   - php7.2-common
   - php7.3-common
