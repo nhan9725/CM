@@ -16,11 +16,18 @@
 - name: Install PHP Packages
   become: yes
   apt: 
-    name: "{{ __php_packages }}"
+    name: "{{ php_packages }}"
     state: present
-  with_items: "{{ __php_packages }}"
-  when: __php_packages is defined
+  with_items: "{{ php_packages }}"
+  when: php_packages is defined
   notify:
-    - restart php{{ php_version }}-fpm
+    - restart php-fpm
 
-#- include: configure.yml
+# - include: configure.yml
+#   static: no
+- include: configure-apcu.yml
+  static: no
+# - include: configure-opcache.yml
+#   static: no
+# - include: configure-fpm.yml
+#   static: no
