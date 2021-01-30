@@ -1,8 +1,7 @@
 --- 
 - hosts: localhost
-  vars:
-    php_version: '7.4'
   vars_files:
-    - /home/duy/snaptecRole/php/vars/ubuntu20.yml 
+    # - /home/duy/snaptecRole/php/vars/ubuntu20.yml
+    - php/vars/ubuntu20.yml
   roles:
     - role: php
