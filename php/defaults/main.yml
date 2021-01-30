@@ -31,3 +31,11 @@ php_apc_shm_size: "512"
 php_apc_enable_cli: "0"
 php_apc_max_file_size: "128MB"
 php_apc_conf_filename: 20-apcu.ini
+
+# php general config 
+php_memory_limit: 2G
+php_max_execution_time: 1800
+php_zlib_output_compression: On
+
+php_realpath_cache_size: 10M
+php_realpath_cache_ttl: 7200

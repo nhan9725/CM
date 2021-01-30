@@ -1,5 +1,5 @@
 ---
-- name: Check for existing APCu config files.
+- name: find all acpu config files 
   find:
     paths: "{{ item }}"
     contains: 'extension(\s+)?=(\s+)?apc[u]?\.so'
@@ -7,10 +7,10 @@
   with_items: "{{ php_extension_conf_paths }}"
 
 - debug:
-    msg: "0000000000000 {{ item.item }} 000000000000"
+    msg: "00000000000000000 {{ item.item }} 00000000000000000"
   with_items: '{{ php_installed_apc_confs.results }}'
 
-- name: Remove any non-role-supplied APCu config files.
+- name: remove non ansible-management acpu config file
   file:
     path: "{{ item.1.path }}"
     state: absent
@@ -20,7 +20,7 @@
     - files
   notify: restart webserver
 
-- name: Ensure APCu config file is present.
+- name: config acpu config file
   template:
     src: apcu.ini.j2
     dest: "{{ item }}/{{ php_apc_conf_filename }}"

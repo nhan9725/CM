@@ -23,8 +23,8 @@
   notify:
     - restart php-fpm
 
-# - include: configure.yml
-#   static: no
+- include: configure.yml
+  static: no
 - include: configure-apcu.yml
   static: no
 # - include: configure-opcache.yml
