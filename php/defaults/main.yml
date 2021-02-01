@@ -39,3 +39,12 @@ php_zlib_output_compression: On
 
 php_realpath_cache_size: 10M
 php_realpath_cache_ttl: 7200
+
+#memcached config
+memcached_port: 11211
+memcached_listen_ip: 127.0.0.1
+memcached_memory_limit: 64
+memcached_connections: 1024
+memcached_log_file: /var/log/memcached.log
+memcached_log_verbosity: ""
+memcached_max_item_size: 1m

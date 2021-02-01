@@ -1,4 +1,9 @@
 ---
+# specific enviroment
+dev: "false"
+prod: "false"
+#php version
+php_version: "7.4"
 # Configure PHP paths and packages.
 php_conf_paths:
   - "/etc/php/{{ php_version }}/fpm"
@@ -12,7 +17,6 @@ php_fpm_conf_path: "/etc/php/{{ php_version }}/fpm"
 php_fpm_pool_conf_path: "{{ php_fpm_conf_path }}/pool.d/www.conf"
 php_mysql_package: "php{{ php_version }}-mysql"
 php_redis_package: "php{{ php_version }}-redis"
-php_memcached_package: "php{{ php_version }}-memcached"
 php_pgsql_package: "php{{ php_version }}-pgsql"
 
 php_tideways_module_path: "/usr/lib/php/{{ php_version }}/modules"
@@ -45,17 +49,14 @@ php_packages:
   - "php{{ php_version }}-xml"
   - "php{{ php_version }}-yaml"
 
-php_versions_debian:
-  - php7.1-common
-  - php7.2-common
-  - php7.3-common
-  - php7.4-common
-
 php_webserver_daemon: "nginx"
 php_fpm_daemon: "php{{ php_version }}-fpm"
-php_version: "7.4"
-
 php_fpm_pool_user: www-data
 php_fpm_pool_group: www-data
 
 purge_php_version: ""
+
+#memcached 
+php_memcached_package: "php{{ php_version }}-memcached"
+memcached_user: memcache
+memcached_config_file: /etc/memcached.conf

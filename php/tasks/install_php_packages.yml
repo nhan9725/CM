@@ -23,11 +23,4 @@
   notify:
     - restart php-fpm
 
-- include: configure.yml
-  static: no
-- include: configure-apcu.yml
-  static: no
-# - include: configure-opcache.yml
-#   static: no
-# - include: configure-fpm.yml
-#   static: no
+
