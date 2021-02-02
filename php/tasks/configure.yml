@@ -9,7 +9,7 @@
     - "{{ php_conf_paths }}"
     - "{{ php_extension_conf_paths }}"
 
-- name: Generate general config file 
+- name: Generate general config file
   template:
     src: php.ini.j2
     dest: "{{ item }}/php.ini"

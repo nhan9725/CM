@@ -1,0 +1,24 @@
+---
+- name: Install PHP Memcached.
+  apt:
+    name: memcached
+    state: present
+  # when:  memcached 
+  # notify:
+  #   - restart webserver
+  #   - restart php-fpm
+## if memcache is a must, have to change config file into php load config to memcached.
+# session.save_handler = files ==> session.save_handler = memcached
+
+- name: Configure php-memcached
+  template:
+    src: memcached.conf.j2
+    dest: "{{ memcached_config_file }}"
+    owner: root
+    group: root
+    force: yes
+    mode: 0644
+  notify: 
+    - restart webserver
+    - restart php-fpm
+  # when:  memcached
