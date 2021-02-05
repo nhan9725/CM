@@ -10,6 +10,5 @@
   static: no
 - include: composer.yml
   static: no
-
-# - include: configure-fpm.yml
-#   static: no
+- include: configure-fpm.yml
+  static: no
