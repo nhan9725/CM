@@ -27,9 +27,9 @@ php_opcache_max_accelerated_files: "60000"
 
 #Apcu setting following magento2 docs 
 php_enable_apc: true
-php_apc_shm_size: "512"
+php_apc_shm_size: "512M"
 php_apc_enable_cli: "0"
-php_apc_max_file_size: "128MB"
+php_apc_max_file_size: "128M"
 php_apc_conf_filename: 20-apcu.ini
 
 # php general config 
