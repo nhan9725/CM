@@ -50,7 +50,7 @@ php_packages:
   - "php{{ php_version }}-yaml"
   - "php{{ php_version }}-memcached"
 
-#nginx 
+#nginx & php-fpm
 php_webserver_daemon: "nginx"
 php_fpm_daemon: "php{{ php_version }}-fpm"
 php_fpm_pool_user: "www-data"
