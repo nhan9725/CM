@@ -63,3 +63,13 @@ memcached_save_files_session : "file"
 memcached_user: "memcache"
 memcached_config_file: "/etc/memcached.conf"
 memcached_save_mode: "memcached"
+
+#### NGINX ####
+root_group: root
+nginx_conf_path: /etc/nginx/conf.d
+nginx_conf_file_path: /etc/nginx/nginx.conf
+nginx_mime_file_path: /etc/nginx/mime.types
+nginx_pidfile: /run/nginx.pid
+nginx_vhost_path: /etc/nginx/sites-enabled
+nginx_default_vhost_path: /etc/nginx/sites-enabled/default
+nginx_user: "www-data"

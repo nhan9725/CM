@@ -1,0 +1,19 @@
+---
+- name: Remove nginx default host config file
+  file: 
+    path: " {{ nginx_default_vhost_path }} "
+    state: absent
+  when: nginx_remove_default_vhost 
+  notify: restart nginx
+- name: Ensure nginx_vhost_path exists.
+  file: 
+    path: "{{  nginx_vhost_path  }}"
+    state: directory
+    mode: 0755
+  notify: reload nginx
+- name: Add main vhost file into site-enable repo
+  template: 
+    src: vhost.conf.j2
+    dest: "{{ nginx_vhost_path }}"
+    mode: 0644
+  notify: reload nginx
