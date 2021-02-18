@@ -1,4 +1,6 @@
 ---
+project_name: "ahihi"
+domain_name: "ahihi.snaptec.co"
 # specific enviroment
 dev: "false"
 prod: "false"
@@ -73,3 +75,9 @@ nginx_pidfile: /run/nginx.pid
 nginx_vhost_path: /etc/nginx/sites-enabled
 nginx_default_vhost_path: /etc/nginx/sites-enabled/default
 nginx_user: "www-data"
+
+###### DOC-ROOT #######
+nginx_doc_root: /var/www/html
+
+
+
