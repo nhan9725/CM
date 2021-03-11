@@ -1,5 +1,5 @@
 upstream fastcgi_backend {
-  server  unix:/run/php/"{{ php_version }}"-fpm.sock;
+  server  unix:/run/php/php.{{ php_version }}-fpm.sock;
 }
 
 map $HTTP_HOST $mage_run_code {
@@ -9,6 +9,6 @@ map $HTTP_HOST $mage_run_code {
 server {
 server_name {{ domain_name }};
 set $MAGE_ROOT {{ nginx_doc_root }};
-#include {{ nginx_doc_root }}.tbs.inc.conf;
+include {{ nginx_doc_root }}/nginx.conf.sample;
 }
 
