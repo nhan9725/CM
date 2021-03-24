@@ -9,6 +9,6 @@ map $HTTP_HOST $mage_run_code {
 server {
 server_name {{ domain_name }};
 set $MAGE_ROOT {{ nginx_doc_root }};
-include {{ nginx_doc_root }}/nginx.conf.sample;
+#include {{ nginx_doc_root }}/nginx.conf.sample;
 }
 

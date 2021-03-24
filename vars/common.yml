@@ -1,0 +1,14 @@
+---
+dev_user: snapdev
+admin_user: snapadmin
+
+common_packages:
+  - htop
+  - net-tools
+  - curl 
+  - zip 
+  - wget
+  - mysql-client
+
+os_magento: true
+

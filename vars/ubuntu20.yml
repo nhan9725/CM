@@ -59,7 +59,7 @@ php_fpm_pool_user: "www-data"
 php_fpm_pool_group: "www-data"
 
 #memcached 
-memcached: true
+memcached: false
 memcached_save_mecached_session: "memcached"
 memcached_save_files_session : "file"
 memcached_user: "memcache"
