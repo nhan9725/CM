@@ -97,3 +97,17 @@ php_packages:
   - "php{{ php_version }}-xml"
   - "php{{ php_version }}-yaml"
   - "php{{ php_version }}-memcached"
+
+#memcached 
+memcached: false
+memcached_save_mecached_session: "memcached"
+memcached_save_files_session : "file"
+memcached_user: "memcache"
+memcached_config_file: "/etc/memcached.conf"
+memcached_save_mode: "memcached"
+
+#nginx & php-fpm
+php_webserver_daemon: "nginx"
+php_fpm_daemon: "php{{ php_version }}-fpm"
+php_fpm_pool_user: "www-data"
+php_fpm_pool_group: "www-data"
