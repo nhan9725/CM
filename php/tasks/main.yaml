@@ -12,3 +12,6 @@
   static: no
 - include: configure-fpm.yml
   static: no
+# - include: configure-fpm-dev-staging.yml
+#   static: no
+#   when: dev 

@@ -1,0 +1,8 @@
+---
+- name : config kernel
+  command: "sysctl -w {{ item }}"
+  with_items:
+    - vm.max_map_count=262144
+    - net.core.somaxconn=1024
+  when: os_magento
+

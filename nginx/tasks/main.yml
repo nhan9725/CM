@@ -1,4 +1,6 @@
 ---
+- include: disable-apache2.yml
+  static: yes
 - include: install-nginx.yml
   static: yes
 - include: mageHost.yml

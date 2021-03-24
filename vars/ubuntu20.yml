@@ -2,8 +2,8 @@
 project_name: "ahihi"
 domain_name: "ahihi.snaptec.co"
 # specific enviroment
-dev: "false"
-prod: "false"
+dev: true
+prod: false
 #php version
 php_version: "7.4"
 # Configure PHP paths and packages.
@@ -16,6 +16,7 @@ php_extension_conf_paths:
   - "/etc/php/{{ php_version }}/apache2/conf.d"
   - "/etc/php/{{ php_version }}/cli/conf.d"
 php_fpm_conf_path: "/etc/php/{{ php_version }}/fpm"
+php_fpm_conf_pool_path: "/etc/php/{{ php_version }}/fpm/pool.d"
 php_fpm_pool_conf_path: "{{ php_fpm_conf_path }}/pool.d/www.conf"
 php_mysql_package: "php{{ php_version }}-mysql"
 php_redis_package: "php{{ php_version }}-redis"
