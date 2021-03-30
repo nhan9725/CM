@@ -5,13 +5,10 @@
   static: no
 - include: configure-apcu.yml
   static: no
-- include: memcached.yml
-  when: memcached 
+- include: memcached.yml # deprecated
+  when: memcached        # deprecated : already set value false as default
   static: no
 - include: composer.yml
   static: no
 - include: configure-fpm.yml
   static: no
-# - include: configure-fpm-dev-staging.yml
-#   static: no
-#   when: dev 

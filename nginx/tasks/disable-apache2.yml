@@ -1,7 +1,3 @@
 ---
-- name: stop apache2
-  service:
-    name: apache2
-    state: stopped
 - name: ensure apache2 is not installed
   apt: name=apache2 state=absent

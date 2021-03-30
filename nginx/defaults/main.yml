@@ -5,7 +5,9 @@ nginx_service_enabled: true
 nginx_remove_default_vhost: true
 
 nginx_conf_template: "nginx.conf.j2"
-nginx_vhost_template: "vhost.conf.j2"
+nginx_vhost_prod_template: "vhost-prod.conf.j2"
+nginx_vhost_dev_template: "vhost-dev.conf.j2"
+
 
 #### NGINX ####
 root_group: root

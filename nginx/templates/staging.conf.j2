@@ -1,0 +1,15 @@
+upstream fastcgi_backend {
+{% if staging is defined %}
+  server  unix:{{ php_fpm_staging_listen }};
+{%endif%}
+}
+
+map $HTTP_HOST $mage_run_code {
+  {{ project_name }}staging.snaptec.co base;
+}
+
+server {
+server_name {{ project_name }}staging.snaptec.co;
+set $MAGE_ROOT {{ nginx_doc_root }};
+#include {{ nginx_doc_root }}/nginx.conf.sample;
+}

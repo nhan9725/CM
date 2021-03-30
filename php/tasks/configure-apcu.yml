@@ -6,9 +6,9 @@
   register: php_installed_apc_confs
   with_items: "{{ php_extension_conf_paths }}"
 
-- debug:
-    msg: "00000000000000000 {{ item.item }} 00000000000000000"
-  with_items: '{{ php_installed_apc_confs.results }}'
+# - debug:
+#     msg: "00000000000000000 {{ item.item }} 00000000000000000"
+#   with_items: '{{ php_installed_apc_confs.results }}'
 
 - name: remove non ansible-management acpu config file
   file:

@@ -1,26 +1,30 @@
+; Do not changing any value in this file . this is default value for dev && staging.
+{% if dev %}
 [dev]
 listen = {{ php_fpm_dev_listen }}
 listen.allowed_clients = 127.0.0.1
 user = {{ php_fpm_pool_user }}
 group = {{ php_fpm_pool_group }}
-
 pm = dynamic
 pm.max_children = 5
 pm.start_servers = 2
 pm.min_spare_servers = 1
 pm.max_spare_servers = 2
 pm.max_requests = 100
+{%endif%}
 
+
+{% if staging %}
 [staging]
 listen = {{ php_fpm_staging_listen }}
 listen.allowed_clients = 127.0.0.1
 user = {{ php_fpm_pool_user }}
 group = {{ php_fpm_pool_group }}
-
 pm = dynamic
 pm.max_children = 5
 pm.start_servers = 2
 pm.min_spare_servers = 1
 pm.max_spare_servers = 2
 pm.max_requests = 100
+{%endif%}
 

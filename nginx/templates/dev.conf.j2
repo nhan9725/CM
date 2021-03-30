@@ -1,5 +1,7 @@
 upstream fastcgi_backend {
-  server  unix:/run/php/php.{{ php_version }}-fpm.sock;
+{% if dev is defined %}
+  server  unix:{{ php_fpm_dev_listen }};
+{%endif%}
 }
 
 map $HTTP_HOST $mage_run_code {
@@ -11,4 +13,3 @@ server_name {{ domain_name }};
 set $MAGE_ROOT {{ nginx_doc_root }};
 #include {{ nginx_doc_root }}/nginx.conf.sample;
 }
-

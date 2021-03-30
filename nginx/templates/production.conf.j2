@@ -1,0 +1,15 @@
+upstream fastcgi_backend {
+{% if prod is defined %}
+  server  unix:{{ php_fpm_listen }};
+{%endif%}
+}
+
+map $HTTP_HOST $mage_run_code {
+  {{ domain_name }} base;
+}
+
+server {
+server_name {{ domain_name }};
+set $MAGE_ROOT {{ nginx_doc_root }};
+#include {{ nginx_doc_root }}/nginx.conf.sample;
+}

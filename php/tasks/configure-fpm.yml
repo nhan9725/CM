@@ -50,7 +50,7 @@
     owner: root
     group: root
     mode: 0644
-  when: php_enable_php_fpm and dev
+  when: php_enable_php_fpm and dev or staging
 
 - name: Configure php-fpm pool (if enabled).
   lineinfile:
@@ -64,7 +64,7 @@
     - regexp: "^group.?=.+$"
       line: "group = {{ php_fpm_pool_group }}"
     - regexp: "^listen.?=.+$"
-      line: "listen = {{ php_fpm_prod_listen }}"
+      line: "listen = {{ php_fpm_listen }}"
     - regexp: '^listen\.allowed_clients.?=.+$'
       line: "listen.allowed_clients = {{ php_fpm_listen_allowed_clients }}"
     - regexp: '^pm\.max_children.?=.+$'
