@@ -5,11 +5,11 @@ upstream fastcgi_backend_staging {
 }
 
 map $HTTP_HOST $mage_run_code {
-  {{ project_name }}staging.snaptec.co base;
+  {{ project_name }}Staging.snaptec.co base;
 }
 
 server {
-server_name {{ project_name }}staging.snaptec.co;
-set $MAGE_ROOT {{ nginx_doc_root }};
+server_name {{ project_name }}Staging.snaptec.co;
+set $MAGE_ROOT {{ nginx_doc_root_staging }};
 #include {{ nginx_doc_root }}/nginx.conf.sample;
 }

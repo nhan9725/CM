@@ -2,15 +2,17 @@
 # project and domain for nginx + php-fpm
 project_name: "ansible"
 domain_name: "ansible.snaptec.co"
-#enviroment
-dev: true
+#enviroment (if dev && staing or only prod)
+dev: false
 staging: false
-prod: false
+prod: true
 #php version
 php_version: "7.4"
 
 ###### DOC-ROOT #######
 nginx_doc_root: /var/www/html
+nginx_doc_root_dev: /var/www/dev
+nginx_doc_root_staging: /var/www/staging
 
 # Nginx - PHP-FPM configuration.
 php_enable_php_fpm: true
@@ -22,6 +24,3 @@ php_fpm_pm_max_children: 50
 php_fpm_pm_start_servers: 5
 php_fpm_pm_min_spare_servers: 5
 php_fpm_pm_max_spare_servers: 5
-
-
-
