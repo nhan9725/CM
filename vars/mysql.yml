@@ -1,0 +1,17 @@
+---
+# Mysql only for dev-staging envs
+mysql_daemon: mariadb
+mysql_packages:
+  - mariadb-server
+mysql_databases: [dev,staging]
+mysql_users: [dev,staging]
+
+dev:
+  - host: '%'
+  - password: snaptec2021
+  - priv: '*.*:USAGE'
+
+staging:
+  - host: '%'
+  - password: snaptec2021
+  - priv: '*.*:USAGE'

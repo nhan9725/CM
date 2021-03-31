@@ -3,7 +3,9 @@
   vars_files:
     - vars/ubuntu20.yml
     - vars/common.yml
+    - vars/mysql.yml
   roles:
     - role: common
     - role: nginx
     - role: php 
+    - role: mariadb

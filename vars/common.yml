@@ -8,7 +8,7 @@ common_packages:
   - curl 
   - zip 
   - wget
-  - mysql-client
+  - mariadb-client
 
 os_magento: true
 

@@ -1,2 +1,8 @@
 ---
 # tasks file for mariadb
+- include_tasks: variables.yml
+- include_tasks: install_mariadb.yml
+- include_tasks: configure.yml
+- include_tasks: secure_mysql.yml
+- include_tasks: databases.yml
+- include_tasks: users.yml
