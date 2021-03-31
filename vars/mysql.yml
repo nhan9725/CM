@@ -3,15 +3,22 @@
 mysql_daemon: mariadb
 mysql_packages:
   - mariadb-server
-mysql_databases: [dev,staging]
-mysql_users: [dev,staging]
+mysql_databases:
+  - name: dev
+    collation: utf8_general_ci
+    encoding: utf8
+    replicate: 1
+  - name: staging
+    collation: utf8_general_ci
+    encoding: utf8
+    replicate: 1
 
-dev:
-  - host: '%'
-  - password: snaptec2021
-  - priv: '*.*:USAGE'
-
-staging:
-  - host: '%'
-  - password: snaptec2021
-  - priv: '*.*:USAGE'
+mysql_users: 
+  - name: dev
+    host: 127.0.0.1
+    password: snaptec2021
+    priv: 'dev.*:ALL'
+  - name: staging
+    host: 127.0.0.1
+    password: snaptec2021
+    priv: 'staging.*:ALL'
