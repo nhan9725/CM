@@ -98,8 +98,8 @@ php_packages:
 
 #memcached 
 memcached: false
-memcached_save_mecached_session: "memcached"
-memcached_save_files_session : "file"
+memcached_save_memcached_session: "memcached"
+memcached_save_files_session : "files"
 memcached_user: "memcache"
 memcached_config_file: "/etc/memcached.conf"
 memcached_save_mode: "memcached"

@@ -1323,7 +1323,7 @@ bcmath.scale = 0
 ;session.save_handler = files
 
 {% if memcached %}
-session.save_handler = {{ memcached_save_mecached_session }}
+session.save_handler = {{ memcached_save_memcached_session }}
 {% else %}
 session.save_handler = {{ memcached_save_files_session }}
 {% endif %}
