@@ -5,7 +5,7 @@ domain_name: "ansible.snaptec.co"
 #enviroment (if dev && staing or only prod)
 dev: false
 staging: false
-prod: true
+prod: false
 #php version
 php_version: "7.4"
 
@@ -14,7 +14,7 @@ nginx_doc_root: /var/www/html
 nginx_doc_root_dev: /var/www/dev
 nginx_doc_root_staging: /var/www/staging
 
-# Nginx - PHP-FPM configuration. (pro)
+# Nginx - PHP-FPM configuration. (prod)
 php_enable_php_fpm: true
 php_fpm_listen: "/var/run/php/php{{ php_version }}-fpm.sock"
 php_fpm_dev_listen: "/var/run/php/php{{ php_version }}-fpm-dev.sock"

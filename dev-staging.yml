@@ -5,7 +5,7 @@
     - vars/common.yml
     - vars/mysql.yml
   roles:
-    # - role: common
-    # - role: nginx
-    # - role: php 
+    - role: common
+    - role: nginx
+    - role: php 
     - role: mariadb

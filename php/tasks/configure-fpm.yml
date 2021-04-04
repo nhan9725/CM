@@ -50,7 +50,7 @@
     owner: root
     group: root
     mode: 0644
-  when: php_enable_php_fpm and dev or staging
+  when: dev == true or staging == true
 
 - name: Configure php-fpm pool (if enabled).
   lineinfile:
