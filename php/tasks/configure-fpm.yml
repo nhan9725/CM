@@ -41,7 +41,7 @@
     group: root
     mode: 0644
     force: no
-  when: php_enable_php_fpm and prod
+  when: php_enable_php_fpm and prod == "true"
 
 - name: Create pool for dev-staging environment
   template:
@@ -51,6 +51,7 @@
     group: root
     mode: 0644
   when: dev == "true" or staging == "true"
+  notify: restart php-fpm
 
 - name: Configure php-fpm pool (if enabled).
   lineinfile:
@@ -58,7 +59,7 @@
     regexp: "{{ item.regexp }}"
     line: "{{ item.line }}"
     state: present
-  with_items:
+  with_items:  
     - regexp: "^user.?=.+$"
       line: "user = {{ php_fpm_pool_user }}"
     - regexp: "^group.?=.+$"
@@ -75,7 +76,7 @@
       line: "pm.min_spare_servers = {{ php_fpm_pm_min_spare_servers }}"
     - regexp: '^pm\.max_spare_servers.?=.+$'
       line: "pm.max_spare_servers = {{ php_fpm_pm_max_spare_servers }}"
-  when: php_enable_php_fpm
+  when: php_enable_php_fpm and prod == "true"
   notify: restart php-fpm
 
 - name: Ensure php-fpm is started and enabled at boot (if configured).
