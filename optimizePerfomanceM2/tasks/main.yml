@@ -1,2 +1,3 @@
 ---
 # tasks file for optimizePerfomanceM2
+- include_tasks: os.yml

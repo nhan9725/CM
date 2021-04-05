@@ -5,5 +5,6 @@
     state: present
   with_items: "{{ common_packages }}"
 
-- include: os.yml
-  static: no
+# - include: os.yml  moving to optimize
+#   static: no
+- include_tasks: users.yml

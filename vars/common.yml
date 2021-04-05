@@ -1,6 +1,17 @@
 ---
-dev_user: snapdev
-admin_user: snapadmin
+# dev_user: snapdev
+# admin_user: snapadmin
+users:
+  - name: snapdev
+    use_sudo: false
+    home: false
+    group: www-data
+    
+  - name: snapadmin
+    use_sudo: true
+    home: true
+    group: snapadmin
+
 
 common_packages:
   - htop
@@ -9,6 +20,5 @@ common_packages:
   - zip 
   - wget
   - mariadb-client
-
 os_magento: true
 
