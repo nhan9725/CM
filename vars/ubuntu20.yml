@@ -2,7 +2,7 @@
 # project and domain for nginx + php-fpm
 project_name: "ansible"
 domain_name: "ansible.snaptec.co"
-#enviroment (if dev && staing or only prod)
+#enviroment (if dev && staging or only prod)
 dev: false
 staging: false
 prod: false
@@ -24,4 +24,9 @@ php_fpm_pm_max_children: 50
 php_fpm_pm_start_servers: 5
 php_fpm_pm_min_spare_servers: 5
 php_fpm_pm_max_spare_servers: 5
+# Elasticsearch configuration
+elasticsearch_version: "6.x"
+elasticsearch_heap_size_min: 512m # current value is for dev-staging envs
+elasticsearch_heap_size_max: 512m # current value is for dev-staging envs
+
 

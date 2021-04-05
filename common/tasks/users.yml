@@ -22,12 +22,11 @@
     key: "{{ lookup('file', '{{ item.name }}') }}"
   with_items: "{{ users }}" 
 
-- name: Sudo permission for added users
+- name: Sudo permission for added users role admin
   lineinfile:
     dest: "/etc/sudoers"
     insertafter: EOF
     line: "{{ item.name }} ALL=(ALL) NOPASSWD: ALL"
-    regexp: '^{{ item.name }} .*'
     state: present
   when: item.use_sudo
   with_items: '{{ users }}'

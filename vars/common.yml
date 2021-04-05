@@ -4,7 +4,7 @@
 users:
   - name: snapdev
     use_sudo: false
-    home: false
+    home: true
     group: www-data
     
   - name: snapadmin

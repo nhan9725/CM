@@ -9,3 +9,5 @@
     - role: nginx
     - role: php 
     - role: mariadb
+    - role: elasticsearch
+    
