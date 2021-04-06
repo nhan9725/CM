@@ -1,5 +1,5 @@
 ---
-- name: creating dir for dev doc-root
+- name: creating dir for production doc-root
   file:
     path: "{{ nginx_doc_root_dev }}"
     state: directory
