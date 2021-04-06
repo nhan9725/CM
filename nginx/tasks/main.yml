@@ -6,6 +6,16 @@
     recurse: yes
     owner: snapdev
     group: www-data
+    mode: u=rwx,g=r,o=r
+  when: prod == 'true'
+
+- name: creating dir for dev doc-root
+  file:
+    path: "{{ nginx_doc_root_dev }}"
+    state: directory
+    recurse: yes
+    owner: snapdev
+    group: www-data
     mode: u=rwx,g=r,o=rwx
   when: dev == 'true'
     

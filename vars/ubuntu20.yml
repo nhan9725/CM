@@ -28,5 +28,10 @@ php_fpm_pm_max_spare_servers: 5
 elasticsearch_version: "6.x"
 elasticsearch_heap_size_min: 512m # current value is for dev-staging envs
 elasticsearch_heap_size_max: 512m # current value is for dev-staging envs
+#redis-local config 
+redis_port: 0
+redis_bind_interface: 127.0.0.1
+redis_unixsocket: '/var/run/redis/redis-server.sock'
+redis_timeout: 300
 
 
