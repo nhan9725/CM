@@ -6,7 +6,7 @@
     recurse: yes
     owner: snapdev
     group: www-data
-    mode: u=rwx,g=r,o=r
+    mode: u=rwx,g=rwx,o=rw
   when: prod == 'true'
 
 - name: creating dir for dev doc-root
@@ -16,7 +16,7 @@
     recurse: yes
     owner: snapdev
     group: www-data
-    mode: u=rwx,g=r,o=rwx
+    mode: u=rwx,g=rwx,o=rw
   when: dev == 'true'
     
 - name: creating dir for staging doc-root
@@ -26,7 +26,7 @@
     recurse: yes
     owner: snapadmin   
     group: www-data
-    mode: u=rwx,g=rwx,o=r
+    mode: u=rwx,g=rwx,o=rw
   when: staging == 'true'
 
 - include: disable-apache2.yml
