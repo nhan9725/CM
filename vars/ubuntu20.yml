@@ -10,7 +10,7 @@ prod: false
 php_version: "7.4"
 
 ###### DOC-ROOT #######
-nginx_doc_root: /var/www/html
+nginx_doc_root: /var/www/{{ project_name }}
 nginx_doc_root_dev: /var/www/dev
 nginx_doc_root_staging: /var/www/staging
 

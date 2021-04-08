@@ -4,7 +4,7 @@
     name: "{{ item.name }}"
     shell: "/bin/bash"
     createhome: "{{ item.home }}"
-    group: "{{ item.group }}"
+    # group: "{{ item.group }}"
   with_items: "{{ users }}"
 
 - name: correct permission .ssh dir for each users

@@ -1,7 +1,7 @@
 ---
 - name: creating dir for production doc-root
   file:
-    path: "{{ nginx_doc_root_dev }}"
+    path: "{{ nginx_doc_root }}"
     state: directory
     recurse: yes
     owner: snapdev

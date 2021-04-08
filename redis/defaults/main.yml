@@ -8,6 +8,7 @@ redis_conf_mode: 0640
 redis_port: 0
 redis_bind_interface: 127.0.0.1
 redis_unixsocket: '/var/run/redis/redis-server.sock'
+redis_unixsocket_permission: 777
 redis_timeout: 300
 
 redis_loglevel: "notice"
