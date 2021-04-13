@@ -4,7 +4,7 @@
     path: "{{ nginx_doc_root }}"
     state: directory
     recurse: yes
-    owner: snapdev
+    owner: xdev
     group: www-data
     mode: u=rwx,g=rwx,o=rw
   when: prod == 'true'
@@ -14,7 +14,7 @@
     path: "{{ nginx_doc_root_dev }}"
     state: directory
     recurse: yes
-    owner: snapdev
+    owner: xdev
     group: www-data
     mode: u=rwx,g=rwx,o=rw
   when: dev == 'true'
@@ -24,7 +24,7 @@
     path: "{{ nginx_doc_root_staging }}"
     state: directory
     recurse: yes
-    owner: snapadmin   
+    owner: xadmin   
     group: www-data
     mode: u=rwx,g=rwx,o=rw
   when: staging == 'true'
