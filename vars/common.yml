@@ -2,15 +2,15 @@
 # dev_user: snapdev
 # admin_user: snapadmin
 users:
-  - name: snapdev
+  - name: xdev
     use_sudo: false
     home: true
-    group: www-data
+    group: xdev
     
-  - name: snapadmin
+  - name: xadmin
     use_sudo: true
     home: true
-    group: snapadmin
+    group: xadmin
 
 
 common_packages:
