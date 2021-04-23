@@ -12,7 +12,6 @@ users:
     home: true
     group: xadmin
 
-
 common_packages:
   - htop
   - net-tools

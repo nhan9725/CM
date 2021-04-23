@@ -1,0 +1,63 @@
+---
+# - name: Check Nginx compatibility
+#   fail:
+#     msg: "Cannot install google page speed module without nginx version higher than 1.11.5"
+#   when: gps_ngx_version == "" or {{ gps_ngx_version | version_compare('1.11.5', '<') }}
+
+- name: download and unarchive nginx
+  unarchive:
+    src: "http://nginx.org/download/nginx-{{ gps_ngx_version }}.tar.gz"
+    dest: /tmp
+    remote_src: yes
+
+# - name: download and unarchive google pagespeed
+#   unarchive:
+#     src: "https://github.com/pagespeed/ngx_pagespeed/archive/v{{ gps_version }}.tar.gz"
+#     dest: /tmp
+#     remote_src: yes
+- name: Git checkout google pagespeed
+  ansible.builtin.git:
+    repo: 'https://github.com/apache/incubator-pagespeed-ngx.git'
+    dest: /tmp
+    version: latest-stable
+
+- name: download and unarchive psol
+  unarchive:
+    src: https://dl.google.com/dl/page-speed/psol/{{ gps_version }}.tar.gz
+    dest: /tmp/incubator-pagespeed-ngx-{{ gps_version }}
+    remote_src: true
+
+- name: configure nginx
+  command: ./configure --add-dynamic-module=../incubator-pagespeed-ngx-{{ gps_version }} --with-compat
+  args:
+    chdir: "/tmp/nginx-{{ gps_ngx_version }}"
+  changed_when: false
+
+- name: build nginx from source
+  command: make modules
+  args:
+    chdir: "/tmp/nginx-{{ gps_ngx_version }}"
+  changed_when: false
+
+- name: copy extension to nginx modules
+  copy:
+    src: /tmp/nginx-{{ gps_ngx_version }}/objs/ngx_pagespeed.so
+    dest: /etc/nginx/modules/ngx_pagespeed.so
+    remote_src: true
+
+- name: enable extension
+  file:
+    src: /etc/nginx/modules/ngx_pagespeed.so
+    dest: /etc/nginx/modules-available/ngx_pagespeed.so
+    state: link
+  notify: restart nginx
+
+- name: remove build files
+  file:
+    path: "/tmp/nginx-{{ gps_ngx_version }}"
+    state: absent
+
+- name: remove build files
+  file:
+    path: "/tmp/incubator-pagespeed-ngx-{{ gps_version }}"
+    state: absent

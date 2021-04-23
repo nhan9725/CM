@@ -4,7 +4,7 @@
     name: "{{ common_packages }}"
     state: present
   with_items: "{{ common_packages }}"
-
-# - include: os.yml  moving to optimize
-#   static: no
+- name: Set a hostname
+  hostname:
+    name: "{{ project_name }}"
 - include_tasks: users.yml

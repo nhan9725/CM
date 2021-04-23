@@ -13,6 +13,13 @@
     group: "{{ item.group }}"
   with_items: "{{ users }}"
 
+- name: adding existing user to www-data
+  user:
+    name: xdev
+    groups: www-data
+    append: yes
+  become: yes
+
 - name: correct permission .ssh dir for each users
   file:
     path: "/home/{{ item.name }}/.ssh"

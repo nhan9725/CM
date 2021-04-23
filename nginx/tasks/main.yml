@@ -6,7 +6,7 @@
     recurse: yes
     owner: xdev
     group: www-data
-    mode: u=rwx,g=rwx,o=rw
+    mode: u=rwx,g=rwx,o=rwx
   when: prod == 'true'
 
 - name: creating dir for dev doc-root
@@ -16,7 +16,7 @@
     recurse: yes
     owner: xdev
     group: www-data
-    mode: u=rwx,g=rwx,o=rw
+    mode: u=rwx,g=rwx,o=rwx
   when: dev == 'true'
     
 - name: creating dir for staging doc-root
@@ -26,12 +26,15 @@
     recurse: yes
     owner: xadmin   
     group: www-data
-    mode: u=rwx,g=rwx,o=rw
+    mode: u=rwx,g=rwx,o=rwx
   when: staging == 'true'
 
 - include: disable-apache2.yml
   static: yes
-- include: install-nginx.yml
-  static: yes
+- include_tasks: install-nginx.yml
+  when: prod == 'false'
+- include_tasks: nginx-pagespeed.yml
+  when: prod == 'true'
+- include_tasks: nginx-config.yml
 - include: mageHost.yml
   static: yes
