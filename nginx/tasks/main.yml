@@ -32,9 +32,9 @@
 - include: disable-apache2.yml
   static: yes
 - include_tasks: install-nginx.yml
-  when: prod == 'false'
-- include_tasks: nginx-pagespeed.yml
-  when: prod == 'true'
+#   when: prod == 'false'
+# - include_tasks: nginx-pagespeed.yml
+#   when: prod == 'true'
 - include_tasks: nginx-config.yml
 - include: mageHost.yml
   static: yes
