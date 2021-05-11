@@ -19,5 +19,6 @@ common_packages:
   - zip 
   - wget
   - mariadb-client
+  - jpegoptim
 os_magento: true
 

@@ -6,7 +6,7 @@
     recurse: yes
     owner: xdev
     group: www-data
-    mode: u=rwx,g=rwx,o=rwx
+    mode: u=rwx,g=rwx,o=rw
   when: prod == 'true'
 
 - name: creating dir for dev doc-root

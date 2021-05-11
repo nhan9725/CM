@@ -11,4 +11,5 @@
     - role: mariadb
     - role: elasticsearch
     - role: redis
+    - role: optimizePerfomanceM2
     
