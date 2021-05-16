@@ -11,6 +11,11 @@ users:
     use_sudo: true
     home: true
     group: xadmin
+  
+  - name: jenkins
+    use_sudo: true
+    home: true
+    group: jenkins
 
 common_packages:
   - htop

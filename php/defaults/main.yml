@@ -94,7 +94,7 @@ php_packages:
   - "php{{ php_version }}-opcache"
   - "php{{ php_version }}-xml"
   - "php{{ php_version }}-yaml"
-  - "php{{ php_version }}-memcached"
+  # - "php{{ php_version }}-memcached"
 
 #memcached 
 memcached: false
