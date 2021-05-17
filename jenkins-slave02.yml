@@ -1,0 +1,15 @@
+- hosts: localhost
+  vars_files:
+    - vars/ubuntu20.yml
+    - vars/common.yml
+    - vars/mysql.yml
+  roles:
+    - role: ansible-role-jenkins-slave
+      jenkins_master_url: "https://jenkins.snaptec.co"
+      jenkins_master_user: ddo    
+      jenkins_master_password: duy@270890
+      jenkins_slave_home: /home/jenkins
+      jenkins_slave_nb_executor: 1
+      jenkins_slave_user: jenkins
+      jenkins_slave_group: jenkins
+      
