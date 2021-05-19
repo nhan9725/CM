@@ -1,7 +1,7 @@
 ---
 # project and domain for nginx + php-fpm
-project_name: "ansible"
-domain_name: "ansible.snaptec.co"
+project_name: 
+domain_name: 
 #enviroment (if dev && staging or only prod)
 dev: false
 staging: false

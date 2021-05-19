@@ -1,9 +1,9 @@
 --- 
-- name: checking required variable
-  assert:
-    that:
-      - "project_name is defined"
-      - "domain_name is defined"  
+# - name: checking required variable
+#   assert:
+#     that:
+#       - "project_name is defined"
+#       - "domain_name is defined"  
 - hosts: localhost
   vars_files:
     - vars/ubuntu20.yml
@@ -12,6 +12,7 @@
   roles:
     - role: common
     - role: nginx
+      when: not project_name|default(Null) #and not domain_name|default(None)
     - role: php 
     - role: mariadb
     - role: elasticsearch
