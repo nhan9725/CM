@@ -1,4 +1,9 @@
 --- 
+- name: checking required variable
+  assert:
+    that:
+      - "project_name is defined"
+      - "domain_name is defined"  
 - hosts: localhost
   vars_files:
     - vars/ubuntu20.yml
@@ -13,3 +18,5 @@
     - role: redis
     - role: optimizePerfomanceM2
     
+# project_name: ""
+# domain_name: ""
