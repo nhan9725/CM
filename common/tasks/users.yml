@@ -19,6 +19,12 @@
     groups: www-data
     append: yes
   become: yes
+- name: adding existing user to xdev
+  user:
+    name: www-data
+    groups: xdev
+    append: yes
+  become: yes
 
 - name: correct permission .ssh dir for each users
   file:
