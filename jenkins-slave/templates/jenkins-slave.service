@@ -6,7 +6,7 @@ After=network.target
 
 [Service]
 EnvironmentFile=/etc/default/jenkins-slave
-ExecStart=source /etc/default/jenkins-slave && /usr/bin/java -jar "${JENKINS_RUN}"/slave.jar -jnlpUrl "${JENKINS_URL}"/computer/"${JENKINS_NODE_NAME}"/slave-agent.jnlp -secret="${JENKINS_SECRET}"
+ExecStart=/usr/bin/java -jar ${JENKINS_RUN}/agent.jar -jnlpUrl ${JENKINS_URL}/computer/${JENKINS_NODE_NAME}/slave-agent.jnlp -secret=${JENKINS_SECRET}
 User=jenkins
 Group=jenkins
 PermissionsStartOnly=true
