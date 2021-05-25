@@ -51,6 +51,6 @@
     group: "{{ jenkins_slave_group }}"
   with_items:
     - {src: jenkins-slave.service, dest: /etc/systemd/system/jenkins-slave.service, mode: 755}
-    - {src: jenkins-slave.default, dest: /etc/default/jenkins-slave, mode: 644}
+    - {src: jenkins-slave.default, dest: /etc/default/jenkins-slave, mode: 755}
   notify: Start Jenkins JNLP slave
   tags: []
