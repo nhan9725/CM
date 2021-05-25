@@ -3,15 +3,15 @@
 # system
 
 # jenkins /run location
-JENKINS_RUN="{{ jenkins_slave_run }}"
+JENKINS_RUN={{ jenkins_slave_run }}
 
 # URL of jenkins server to connect to
 # Not specifying this parameter will stop the slave
 # job from running.
-JENKINS_URL="{{ jenkins_master_url | default() }}"
+JENKINS_URL={{ jenkins_master_url | default() }}
 
 # Node name
-JENKINS_NODE_NAME="{{ jenkins_slave_name }}"
+JENKINS_NODE_NAME={{ jenkins_slave_name }}
 
 # Secret key to access jenkins server
-JENKINS_SECRET="{{ jenkins_slave_secret | default() }}"
+JENKINS_SECRET={{ jenkins_slave_secret | default() }}
