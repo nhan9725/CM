@@ -1,0 +1,56 @@
+##nohup java -jar /opt/jenkins/agent.jar -jnlpUrl http://YourJenkinsMaster:8080/computer/NameOfYourSlave/slave-agent.jnlp -jnlpCredentials userJenkinsMaster:passwordJenkinsMaster &
+---
+# tasks file for role_jenkins_slave
+- import_tasks: checking-inpendence.yml
+- name: Download slave.jar file from Jenkins master
+  get_url:
+    url: "{{ jenkins_master_url }}/jnlpJars/agent.jar"
+    dest: "{{ jenkins_slave_run }}/agent.jar"
+    owner: "{{ jenkins_slave_user }}"
+    group: "{{ jenkins_slave_group }}"
+    mode: '0774'
+  tags:
+    - register
+
+- name: "Register jenkins agent on master using groovy script"
+  jenkins_script:
+    user: "{{ jenkins_master_user }}"
+    password: "{{ jenkins_master_password }}"
+    validate_certs: false
+    timeout: 120
+    url: "{{ jenkins_master_url }}"
+    script: "{{ lookup('template', 'add_slave.groovy.j2') }}"
+  tags:
+    - register
+
+- name: Get the secret jenkins slave
+  uri:
+    url: "{{ jenkins_master_url }}/computer/{{ jenkins_slave_name }}/slave-agent.jnlp"
+    method: GET
+    force_basic_auth: true
+    user: "{{ jenkins_master_user }}"
+    password: "{{ jenkins_master_password }}"
+    return_content: true
+  register: jenkins_jnlp_endpoint_response
+  tags:
+    - register
+
+- name: Extract Slave secret from http response
+  set_fact:
+    jenkins_slave_secret: "{{ jenkins_jnlp_endpoint_response.content | regex_search('([a-z0-9]*)(?=</argument>)') }}"
+    skip_start_service: false
+  tags:
+    - register
+
+- name: Template Jenkins JNLP slave files
+  become: true
+  template:
+    src: "{{ item.src }}"
+    dest: "{{ item.dest }}"
+    owner: "{{ jenkins_slave_user }}"
+    group: "{{ jenkins_slave_group }}"
+  with_items:
+    - { src: jenkins-slave.service, dest: /etc/systemd/system/jenkins-slave.service, mode: 755}
+    - {src: jenkins-slave.default, dest: /etc/default/jenkins-slave, mode: 644}
+  notify: Start Jenkins JNLP slave
+  tags: []

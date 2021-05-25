@@ -1,0 +1,43 @@
+---
+dependency:
+  name: galaxy
+  options:
+    role-file: requirements.yml
+    ignore-certs: true
+driver:
+  name: docker
+lint:
+  name: yamllint
+platforms:
+  - name: js_master_not_registerred_slave-$TOX_ENVNAME
+    image: jenkins/jenkins:lts
+    pre_build_image: true
+    override_command: false
+    groups:
+      - jenkins_masters
+    privileged: true
+    volumes:
+      - ${MOLECULE_SCENARIO_DIRECTORY}/../master-groovy-files:/usr/share/jenkins/ref/init.groovy.d
+    env:
+      JAVA_OPTS: "-Djenkins.install.runSetupWizard=false"
+  - name: js_centos7_not_registerred_slave-$TOX_ENVNAME
+    image: centos:7
+    privileged: true
+    command: "/sbin/init"
+    cap_add: ["SYS_ADMIN", "SETPCAP"]
+    groups:
+      - jenkins_slaves
+provisioner:
+  name: ansible
+  env:
+    ANSIBLE_SKIP_TAGS: register  # skip this tag during this scenario
+  lint:
+    name: ansible-lint
+    options:
+      x: ["ANSIBLE0006"]
+scenario:
+  name: not-registered-slave
+verifier:
+  name: testinfra
+  lint:
+    name: flake8
