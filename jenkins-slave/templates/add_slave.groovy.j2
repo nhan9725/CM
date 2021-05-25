@@ -29,7 +29,7 @@ DumbSlave dumb = new DumbSlave(
 
 dumb.setNodeDescription("{{ jenkins_slave_description }}") // Agent description
 dumb.setNumExecutors({{ jenkins_slave_nb_executor }}) // Number of executors
-dumb.setLabelString("{{ jenkins_slave_labels | join(' ') }}") // Labels
+dumb.setLabelString("{{ jenkins_slave_labels }}") // Labels
 dumb.setMode(Mode.NORMAL) // "Usage" field, EXCLUSIVE is "only tied to node", NORMAL is "any"
 dumb.setRetentionStrategy(RetentionStrategy.INSTANCE) // Is the "Availability" field and INSTANCE means "Always"
 

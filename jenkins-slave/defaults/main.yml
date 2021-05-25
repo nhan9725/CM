@@ -4,5 +4,4 @@
 jenkins_slave_description: "{{ jenkins_slave_name }}"
 jenkins_slave_home: /home/jenkins
 jenkins_slave_nb_executor: 2
-jenkins_slave_labels:
-  - ansible
+jenkins_slave_labels: "{{ jenkins_slave_name }}"
