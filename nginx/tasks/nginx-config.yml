@@ -8,4 +8,4 @@
     mode: 0644
   notify:
     - reload nginx
-  when: prod
+  when: prod == "true"

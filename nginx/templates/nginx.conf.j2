@@ -7,6 +7,7 @@ pid        {{ nginx_pidfile }};
 {% block worker %}
 #worker_processes  {{ nginx_worker_processes }};
 worker_processes  auto;
+worker_rlimit_nofile {{ worker_rlimit_nofile }};
 {% endblock %}
 
 {% if nginx_extra_conf_options %}
@@ -17,6 +18,9 @@ worker_processes  auto;
 events {
     worker_connections  {{ nginx_worker_connections }};
     multi_accept {{ nginx_multi_accept }};
+{% if epoll is not none %}
+use {{ epoll }};
+{% endif %}
 }
 {% endblock %}
 
@@ -35,14 +39,18 @@ http {
 
     access_log  {{ nginx_access_log }};
 
-    sendfile        {{ nginx_sendfile }};
-    tcp_nopush      {{ nginx_tcp_nopush }};
-    tcp_nodelay     {{ nginx_tcp_nodelay }};
+    sendfile                {{ nginx_sendfile }};
+    tcp_nopush              {{ nginx_tcp_nopush }};
+    tcp_nodelay             {{ nginx_tcp_nodelay }};
+    client_body_timeout     {{ client_body_timeout }};
+    send_timeout            {{ send_timeout }};
+    server_tokens           {{ nginx_server_tokens }};
+    # allow the server to close connection on non responding client, this will free up memory
+    reset_timedout_connection {{ reset_timedout_connection }};
 
     keepalive_timeout  {{ nginx_keepalive_timeout }};
     keepalive_requests {{ nginx_keepalive_requests }};
 
-    server_tokens {{ nginx_server_tokens }};
 {% if nginx_proxy_cache_path %}
     proxy_cache_path {{ nginx_proxy_cache_path }};
 {% endif %}
@@ -75,6 +83,12 @@ http {
     }
 {% endfor %}
 {% endblock %}
+
+{% if prevent_ddos is sameas true %}
+    {%block slow_down_ddos%}
+        {{ slow_down_ddos|indent(20,False) }}
+    {%endblock%}
+{% endif %}
 
 {% block http_includes %}
     include {{ nginx_conf_path }}/*.conf;

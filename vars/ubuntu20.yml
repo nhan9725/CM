@@ -6,9 +6,11 @@ domain_name:
 dev: false
 staging: false
 prod: false
+#ddos prevent
+prevent_ddos: true
 #php version
-php_version: "7.4"
-
+php_version: "8.1"
+composer_version: "2"
 ###### DOC-ROOT #######
 nginx_doc_root: /var/www/{{ project_name }}
 nginx_doc_root_dev: /var/www/dev
@@ -20,6 +22,8 @@ php_fpm_listen: "/var/run/php/php{{ php_version }}-fpm.sock"
 php_fpm_dev_listen: "/var/run/php/php{{ php_version }}-fpm-dev.sock"
 php_fpm_staging_listen: "/var/run/php/php{{ php_version }}-fpm-staging.sock"
 php_fpm_listen_allowed_clients: "127.0.0.1"
+#prod true
+php_fpm_pm_manager_children: static
 php_fpm_pm_max_children: 50
 php_fpm_pm_start_servers: 5
 php_fpm_pm_min_spare_servers: 5

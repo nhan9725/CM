@@ -94,8 +94,9 @@ php_packages:
   - "php{{ php_version }}-opcache"
   - "php{{ php_version }}-xml"
   - "php{{ php_version }}-yaml"
-  # - "php{{ php_version }}-memcached"
 
+php8_package_removed:
+  - "php{{ php_version }}-json"
 #memcached 
 memcached: false
 memcached_save_memcached_session: "memcached"

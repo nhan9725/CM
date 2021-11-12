@@ -1,4 +1,9 @@
 ---
+- name: Ensure dirmngr is installed (gnupg dependency).
+  apt:
+    name: dirmngr
+    state: present
+
 - name: install software properties common
   become: true    
   apt: 
@@ -9,9 +14,38 @@
   become: true
   apt_repository: repo={{ php_ppa }}
 
+- name: Add dependencies for PHP versions (Debian).
+  apt:
+    name:
+      - apt-transport-https
+      - ca-certificates
+    state: present
+
+# - name: Add Ondrej Sury's apt key (Debian).
+#   apt_key:
+#     url: https://packages.sury.org/php/apt.gpg
+#     id: 15058500A0235D97F5D10063B188E2B695BD4743
+#     state: present
+
+# - name: Add Ondrej Sury's repo (Debian).
+#   apt_repository:
+#     repo: "deb https://packages.sury.org/php/ debian main"
+#     state: present
+#   register: php_ondrej_debian_repo
+
+# - name: Update apt caches after repo is added (Debian).
+#   apt: update_cache=true
+#   when:
+#     - php_ondrej_debian_repo.changed
+
 - name: Update apt
   become: yes
   apt: update_cache=yes
+
+- set_fact:
+    php_packages: "{{ php_packages | difference(php8_package_removed) }}"
+  when:
+    - php_version is version('8.0', '>=')
 
 - name: Install PHP Packages
   become: yes

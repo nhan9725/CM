@@ -9,7 +9,7 @@
     - "{{ php_conf_paths }}"
     - "{{ php_extension_conf_paths }}"
 
-- name: Generate general config file
+- name: Generate general config file php7
   template:
     src: php.ini.j2
     dest: "{{ item }}/php.ini"
@@ -17,4 +17,16 @@
     group: root
     mode: 0644
   with_items: "{{ php_conf_paths }}"
+  when: php_version is version('7.4', '<=')
+  notify: restart webserver
+
+- name: Generate general config file php8
+  template:
+    src: php8.ini.j2
+    dest: "{{ item }}/php.ini"
+    owner: root
+    group: root
+    mode: 0644
+  with_items: "{{ php_conf_paths }}"
+  when: php_version is version('8.0', '>=')
   notify: restart webserver

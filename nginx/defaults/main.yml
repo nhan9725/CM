@@ -30,9 +30,10 @@ nginx_conf_template: "nginx.conf.j2"
 nginx_worker_processes: >- 
   {{ ansible_processor_vcpus | default(ansible_processor_count) }}
 
-nginx_worker_connections: "1024"
-nginx_multi_accept: "off"
-
+nginx_worker_connections: "4000"
+worker_rlimit_nofile: "100000"
+nginx_multi_accept: "on"
+epoll : "epoll"
 nginx_error_log: "/var/log/nginx/error.log warn"
 nginx_access_log: "/var/log/nginx/access.log main buffer=16k flush=2m"
 
@@ -40,10 +41,12 @@ nginx_sendfile: "on"
 nginx_tcp_nopush: "on"
 nginx_tcp_nodelay: "on"
 
-nginx_keepalive_timeout: "65"
-nginx_keepalive_requests: "100"
-
-nginx_server_tokens: "on"
+nginx_keepalive_timeout: "30"
+nginx_keepalive_requests: "100000"
+reset_timedout_connection: "on"
+client_body_timeout: "10"
+send_timeout: "2"
+nginx_server_tokens: "off"
 
 nginx_client_max_body_size: "64m"
 
@@ -132,3 +135,22 @@ http_file_cache: |-
     open_file_cache_valid 30s;
     open_file_cache_min_uses 2;
     open_file_cache_errors on;
+slow_down_ddos: |-
+  # limit the number of connections per single IP
+  limit_conn_zone $binary_remote_addr zone=conn_limit_per_ip:10m;
+  # limit the number of requests for a given session
+  limit_req_zone $binary_remote_addr zone=req_limit_per_ip:10m rate=5r/s;
+  # zone which we want to limit by upper values, we want limit whole server
+  server {
+      limit_conn conn_limit_per_ip 10;
+      limit_req zone=req_limit_per_ip burst=10 nodelay;
+  }
+  # if the request body size is more than the buffer size, then the entire (or partial)
+  # request body is written into a temporary file
+  client_body_buffer_size  128k;
+  # buffer size for reading client request header -- for testing environment
+  client_header_buffer_size 3m;
+  # maximum number and size of buffers for large headers to read from client request
+  large_client_header_buffers 4 256k;
+  # how long to wait for the client to send a request header -- for testing environment
+  client_header_timeout 3m;
