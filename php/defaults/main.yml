@@ -49,6 +49,10 @@ memcached_log_file: /var/log/memcached.log
 memcached_log_verbosity: ""
 memcached_max_item_size: 1m
 
+#  config root fpm
+emergency_restart_threshold : 10
+emergency_restart_interval: 1m
+process_control_timeout: 10s
 # Configure PHP paths and packages.
 php_conf_paths:
   - "/etc/php/{{ php_version }}/fpm"
@@ -61,6 +65,7 @@ php_extension_conf_paths:
 php_fpm_conf_path: "/etc/php/{{ php_version }}/fpm"
 php_fpm_conf_pool_path: "/etc/php/{{ php_version }}/fpm/pool.d"
 php_fpm_pool_conf_path: "{{ php_fpm_conf_path }}/pool.d/www.conf"
+php_fpm_conf_root_pool_path: "/etc/php/{{ php_version }}/fpm/php-fpm.conf"
 php_mysql_package: "php{{ php_version }}-mysql"
 php_redis_package: "php{{ php_version }}-redis"
 php_pgsql_package: "php{{ php_version }}-pgsql"
