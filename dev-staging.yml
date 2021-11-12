@@ -12,12 +12,12 @@
   roles:
     - role: common
     - role: nginx
-#      when: not project_name|default(Null) #and not domain_name|default(None)
+      when: not project_name|default(Null) #and not domain_name|default(None)
     - role: php 
 #    - role: mariadb
 #    - role: elasticsearch
-#    - role: redis
-#    - role: optimizePerfomanceM2
+    - role: redis
+    - role: optimizePerfomanceM2
     
 # project_name: ""
 # domain_name: ""
