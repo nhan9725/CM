@@ -12,14 +12,26 @@
   tags:
     - register
 
+# - name: "Register jenkins agent on master using groovy script"
+#   jenkins_script:
+#     user: "{{ jenkins_master_user }}"
+#     password: "{{ jenkins_master_password }}"
+#     validate_certs: false
+#     timeout: 120
+#     url: "{{ jenkins_master_url }}"
+#     script: "{{ lookup('template', 'add_slave.groovy.j2') }}"
+#   tags:
+#     - register
+- name: Generate scripts file
+  template:
+    src: add_slave.groovy.j2
+    dest: "/home/jenkins/add_slave.groovy"
+    # owner: 1001
+    # group: 1001
+    # mode: 0777
 - name: "Register jenkins agent on master using groovy script"
-  jenkins_script:
-    user: "{{ jenkins_master_user }}"
-    password: "{{ jenkins_master_password }}"
-    validate_certs: false
-    timeout: 120
-    url: "{{ jenkins_master_url }}"
-    script: "{{ lookup('template', 'add_slave.groovy.j2') }}"
+  shell: 
+    'curl -d "script=$(cat /home/jenkins/add_slave.groovy)" -v -u {{ jenkins_master_user }}:{{ jenkins_slave_token }} https://jenkins.snaptec.co/scriptText'
   tags:
     - register
 
