@@ -16,7 +16,7 @@
     - role: php 
 #    - role: mariadb
 #    - role: elasticsearch
-    - role: redis
+#    - role: redis
     - role: optimizePerfomanceM2
     
 # project_name: ""
