@@ -93,7 +93,7 @@
     - regexp: "^;emergency_restart_interval.?=.+$" 
       line: "emergency_restart_interval = {{ emergency_restart_interval }}"
     - regexp: "^;process_control_timeout.?=.+$" 
-      line: "emergency_restart_interval = {{ emergency_restart_interval }}"
+      line: "process_control_timeout = {{ process_control_timeout }}"
   when: php_enable_php_fpm and prod == "true"
   notify: restart php-fpm
 

@@ -7,9 +7,10 @@
     - role: jenkins-slave
       jenkins_master_url: "https://jenkins.snaptec.co"
       jenkins_master_user: swarm    
-      jenkins_master_password: snaptec@2021
+      jenkins_master_password: 1xMi7Q4f0qiUBX
       jenkins_slave_home: /home/jenkins
       jenkins_slave_nb_executor: 1
       jenkins_slave_user: jenkins
       jenkins_slave_group: jenkins
+      jenkins_slave_token: 11d372d4424a471dd72826f89461ada324
       
