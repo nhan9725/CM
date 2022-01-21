@@ -25,5 +25,6 @@ common_packages:
   - wget
   - mariadb-client
   - jpegoptim
+  - redis-tools
 os_magento: true
 
