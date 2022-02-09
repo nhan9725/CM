@@ -6,4 +6,4 @@ sudo ansible-playbook  jenkins-slave02.yml --extra-vars="jenkins_slave_name={{ p
 # spin up magento dev
 sudo ansible-playbook dev-staging.yml --extra-vars='php_version={{ php_version }} project_name={{ project_name }} domain_name={{ domain_name }}'
 # spin up magento prod
-sudo ansible-playbook dev-staging.yml --extra-vars='php_version={{ php_version }} project_name={{ project_name }} domain_name={{ domain_name }} prod=true prevent_ddos=true'
+sudo ansible-playbook dev-staging.yml --extra-vars='php_version={{ php_version }} project_name={{ project_name }} domain_name={{ domain_name }} prod=true'
