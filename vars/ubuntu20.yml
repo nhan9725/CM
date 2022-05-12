@@ -10,7 +10,7 @@ prod: false
 prevent_ddos: true
 #php version
 php_version: "8.1"
-#composer_version: "2"
+composer_version: "2"
 ###### DOC-ROOT #######
 nginx_doc_root: /var/www/{{ project_name }}
 nginx_doc_root_dev: /var/www/dev
